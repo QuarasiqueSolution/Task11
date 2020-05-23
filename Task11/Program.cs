@@ -10,33 +10,16 @@ namespace Task11
             try
             {
                 Console.WriteLine("Connecting to database...");
-                using (SumIntervalsEntities db = new SumIntervalsEntities())
+                using (var db = new SumIntervalsContext())
                 {
                     var sumIntervals = db.Results;
 
-                    if (!sumIntervals.Any()) //First launch
+                    var lastResults = db.Results.OrderByDescending(x => x.Id).Take(5);
+                    int resultCount = lastResults.Count() >= 5 ? 5 : lastResults.Count();
+                    Console.WriteLine("Last {0} result(s) (#\'Id\': \'value\'): ", resultCount);
+                    foreach (var row in lastResults)
                     {
-                        db.Results.Add(new Result { SumIntervals = 1 });
-                        db.Results.Add(new Result { SumIntervals = 2 });
-                        db.Results.Add(new Result { SumIntervals = 3 });
-                        db.SaveChanges();
-                        Console.WriteLine("First launch. Table was initiated by 3 rows (#\'Id\': \'value\'): ");
-                        foreach (var row in sumIntervals)
-                        {
-                            Console.WriteLine("#{0}: {1}", row.Id, row.SumIntervals);
-                        }
-                    }
-                    else
-                    {
-                        var lastResults = db.Results.OrderByDescending(x => x.Id).Take(5);
-                        int resultCount = 0;
-                        if (lastResults.Count() >= 5) resultCount = 5;
-                        else resultCount = lastResults.Count();
-                        Console.WriteLine("Last {0} result(s) (#\'Id\': \'value\'): ", resultCount);
-                        foreach (var row in lastResults)
-                        {
-                            Console.WriteLine("#{0}: {1}", row.Id, row.SumIntervals);
-                        }
+                        Console.WriteLine("#{0}: {1}", row.Id, row.Result);
                     }
 
                     while (true)
@@ -69,9 +52,9 @@ namespace Task11
                         {
                             Console.WriteLine("[" + e.Item1 + ", " + e.Item2 + "]");
                         }
-                        int result = SumIntervals.sumIntervals(intervals);
+                        int result = SumIntervals.GetSumInterval(intervals);
                         Console.WriteLine("Sum of these intervals: " + result);
-                        db.Results.Add(new Result { SumIntervals = result });
+                        db.Results.Add(new SumInterval { Result = result });
                         db.SaveChanges();
                         Console.WriteLine("Result was inserted into database.");
                     }
