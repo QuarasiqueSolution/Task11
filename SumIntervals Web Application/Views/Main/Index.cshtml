@@ -14,7 +14,7 @@
         @using (Html.BeginForm("SumIntervalsForm", "Main", FormMethod.Post))
         {
             <table>
-                <tr><td>@Html.Label("LastResultLabel", "Last 5 result from database:")</td></tr>
+                <tr><td>@Html.Label("LastResultLabel", "Last result(s) from database:")</td></tr>
                 <tr><td>@Html.DropDownList("intervals", ViewBag.Results as SelectList)</td>
                 <tr><td></td></tr>
                 <tr><td>@Html.Label("InputLabel1", "Input number of intervals to get sum of the lengths of these intervals.")</td></tr>
