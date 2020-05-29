@@ -4,10 +4,11 @@ using Task11Library;
 
 namespace SumIntervals_WPF_Application.ViewModel
 {
-    class ResultsWindowViewModel : INotifyPropertyChanged
+    internal class ResultsWindowViewModel : INotifyPropertyChanged
     {
         private List<SumInterval> _resultList = new List<SumInterval>();
-        public List<SumInterval> ResultList 
+
+        public List<SumInterval> ResultList
         {
             get => _resultList;
             set
@@ -18,6 +19,7 @@ namespace SumIntervals_WPF_Application.ViewModel
         }
 
         private string _resultLabel = "";
+
         public string ResultLabel
         {
             get => _resultLabel;
@@ -29,6 +31,7 @@ namespace SumIntervals_WPF_Application.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

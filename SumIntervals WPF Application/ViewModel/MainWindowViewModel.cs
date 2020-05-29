@@ -8,15 +8,17 @@ using Task11Library;
 
 namespace SumIntervals_WPF_Application.ViewModel
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    internal class MainWindowViewModel : INotifyPropertyChanged
     {
         #region Fields/Properties
+
         private ObservableCollection<IntervalModel> Intervals { get; set; }
         public GetSumIntervalsCommand GetSumIntervalsCommand { get; }
 
         private readonly IntervalModel _intervalmodel = new IntervalModel();
 
         private int _result = 0;
+
         public int Result
         {
             get => _result;
@@ -48,6 +50,7 @@ namespace SumIntervals_WPF_Application.ViewModel
         }
 
         private bool _isEnabledGetSumButton;
+
         public bool IsEnabledGetSumButton
         {
             get => _isEnabledGetSumButton;
@@ -56,15 +59,16 @@ namespace SumIntervals_WPF_Application.ViewModel
                 _isEnabledGetSumButton = value;
                 OnPropertyChanged("IsEnabledGetSumButton");
             }
-        
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+
+        #endregion Fields/Properties
 
         public MainWindowViewModel(ObservableCollection<IntervalModel> Intervals)
         {
@@ -81,7 +85,7 @@ namespace SumIntervals_WPF_Application.ViewModel
                 intervals[i].Item2 = Intervals[i].SecondInterval;
             }
             Result = SumIntervals.GetSumInterval(intervals);
-            SaveResult.Save(new SumInterval { Result = this.Result});
+            SaveResult.Save(new SumInterval { Result = this.Result });
             MessageBox.Show("Result: " + Result + "\nSaved to database.", "Result", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }

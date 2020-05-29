@@ -13,16 +13,16 @@
     <div>
         @using (Html.BeginForm("SumIntervalsForm", "Main", FormMethod.Post))
         {
-        <table>
-            <tr><td>@Html.Label("LastResultLabel", "Last 5 result from database:")</td></tr>
-            <tr><td>@Html.DropDownList("intervals", ViewBag.Results as SelectList)</td><tr>
-            <tr><td></td></tr>
-            <tr><td>@Html.Label("InputLabel1", "Input number of intervals to get sum of the lengths of these intervals.")</td></tr>
-            <tr><td>@Html.Label("InputLabel2", "Example: input of \"1 2 3 4\" would be [1, 2], [3, 4]).")</td></tr>
-            <tr><td>@Html.Label("InputLabel3", "Note: Incorrect input would be a \"0\".")</td>
-            <tr><td>@Html.TextBox("InputTextbox", "Input intervals here...")</td></tr>
-            <tr><td><button name="action" value="add">Calculate sum of intervals</button></td></tr>
-        </table>
+            <table>
+                <tr><td>@Html.Label("LastResultLabel", "Last 5 result from database:")</td></tr>
+                <tr><td>@Html.DropDownList("intervals", ViewBag.Results as SelectList)</td>
+                <tr><td></td></tr>
+                <tr><td>@Html.Label("InputLabel1", "Input number of intervals to get sum of the lengths of these intervals.")</td></tr>
+                <tr><td>@Html.Label("InputLabel2", "Example: input of \"1 2 3 4\" would be [1, 2], [3, 4]).")</td></tr>
+                <tr><td>@Html.Label("InputLabel3", "Note: Incorrect input would be a \"0\".")</td>
+                <tr><td>@Html.TextBox("InputTextbox", "Input intervals here...")</td></tr>
+                <tr><td><button>Calculate sum of intervals</button></td></tr>
+            </table>
         }
     </div>
 </body>

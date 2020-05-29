@@ -18,17 +18,19 @@ namespace SumIntervals_Web_Application.Controllers
         }
 
         [HttpPost]
-        public string SumIntervalsForm(string InputTextbox)
+        public ViewResult SumIntervalsForm(string InputTextbox)
         {
-            string finalResultString = "";
             int[] intervalsArray = InputTextbox.Split(' ').Select(s => int.TryParse(s, out int n) ? n : 0).ToArray();
             if (intervalsArray.Length <= 1)
             {
-                return "Array is empty or not filled!";
+                ViewBag.IntervalsLabel = "Array is empty or not filled!";
+                ViewBag.SumIntervalsLabel = "";
+                ViewBag.DbLabel = "";
+                return View("~/Views/Main/Result.cshtml");
             }
             if (intervalsArray.Length % 2 != 0)
             {
-                finalResultString += "Warning: Last interval contains only one number. Erasing last interval...\n";
+                ViewBag.WarningLabel = "Warning: Last interval contains only one number. Erasing last interval...";
                 intervalsArray = intervalsArray.Take(intervalsArray.Length - 1).ToArray();
             }
             int intervalsLength = intervalsArray.Length / 2;
@@ -38,16 +40,18 @@ namespace SumIntervals_Web_Application.Controllers
                 intervals[i].Item1 = intervalsArray[i + i];
                 intervals[i].Item2 = intervalsArray[i + i + 1];
             }
-            finalResultString += "Intervals: \n";
+            string inputedIntervals = "Intervals: \n";
             foreach (var e in intervals)
             {
-                finalResultString += "[" + e.Item1 + ", " + e.Item2 + "]\n";
+                inputedIntervals += "[" + e.Item1 + ", " + e.Item2 + "]";
             }
             int result = SumIntervals.GetSumInterval(intervals);
-            finalResultString += "Sum of these intervals: " + result + "\n";
             SaveResult.Save(new SumInterval { Result = result });
-            finalResultString += "Result was inserted into database.";
-            return finalResultString;
+
+            ViewBag.IntervalsLabel = inputedIntervals;
+            ViewBag.SumIntervalsLabel = "Sum of these intervals: " + result.ToString();
+            ViewBag.DbLabel = "Result was inserted into database.";
+            return View("~/Views/Main/Result.cshtml");
         }
     }
 }

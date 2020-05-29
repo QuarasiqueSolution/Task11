@@ -9,6 +9,7 @@ namespace SumIntervals_WPF_Application.View
     public partial class ResultsWindow : Window
     {
         private ResultsWindowViewModel resultViewModel = new ResultsWindowViewModel();
+
         public ResultsWindow()
         {
             InitializeComponent();

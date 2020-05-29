@@ -1,10 +1,10 @@
 ﻿using SumIntervals_WPF_Application.Model;
 using SumIntervals_WPF_Application.ViewModel;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Collections.Specialized;
 
 namespace SumIntervals_WPF_Application.View
 {
@@ -15,7 +15,6 @@ namespace SumIntervals_WPF_Application.View
     {
         internal ObservableCollection<IntervalModel> Intervals = new ObservableCollection<IntervalModel>();
         private MainWindowViewModel sumIntervalsViewModel;
-        
 
         public MainWindow()
         {
@@ -45,8 +44,8 @@ namespace SumIntervals_WPF_Application.View
 
         private void TextboxPreviewInput(object sender, TextCompositionEventArgs e)
         {
-            if ((sender as TextBox).SelectionStart == 0 
-                && e.Text == "-" 
+            if ((sender as TextBox).SelectionStart == 0
+                && e.Text == "-"
                 || long.TryParse(e.Text, out _)) return;
             e.Handled = true;
         }

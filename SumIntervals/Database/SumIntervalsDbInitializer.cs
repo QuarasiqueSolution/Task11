@@ -2,7 +2,7 @@
 
 namespace Task11Library
 {
-    public class SumIntervalDbInitializer: CreateDatabaseIfNotExists<SumIntervalsContext>
+    public class SumIntervalDbInitializer : CreateDatabaseIfNotExists<SumIntervalsContext>
     {
         protected override void Seed(SumIntervalsContext context)
         {

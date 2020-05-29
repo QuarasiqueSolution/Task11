@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Results"
-        SizeToContent="WidthAndHeight" 
+        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize">
-    
+
     <StackPanel>
-        <Label Content="{Binding Path=ResultLabel, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="{Binding Path=ResultLabel, UpdateSourceTrigger=PropertyChanged}" />
         <ListView x:Name="ResultListView"
                   ItemsSource="{Binding Path=ResultList, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="Id" 
+                        <GridViewColumn Header="Id"
                                         DisplayMemberBinding="{Binding Path=Id}"
-                                        Width="Auto"/>
-                        <GridViewColumn Header="Result" 
+                                        Width="Auto" />
+                        <GridViewColumn Header="Result"
                                         DisplayMemberBinding="{Binding Path=Result}"
-                                        Width="Auto"/>
+                                        Width="Auto" />
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

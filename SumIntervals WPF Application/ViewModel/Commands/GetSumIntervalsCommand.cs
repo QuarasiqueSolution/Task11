@@ -1,13 +1,9 @@
-﻿using SumIntervals_WPF_Application.Model;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System;
 using System.Windows.Input;
 
 namespace SumIntervals_WPF_Application.ViewModel.Commands
 {
-    class GetSumIntervalsCommand: ICommand
+    internal class GetSumIntervalsCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

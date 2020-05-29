@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Result";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sum Intervals Web page</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr><td>@Html.Label("", (string)ViewBag.WarningLabel)</td></tr>
+            <tr><td>@Html.Label("IntervalsLabel", (string)ViewBag.IntervalsLabel)</td></tr>
+            <tr><td>@Html.Label("SumIntervalsLabel", (string)ViewBag.SumIntervalsLabel)</td></tr>
+            <tr><td>@Html.Label("DbLabel", (string)ViewBag.DbLabel)</td></tr>
+        </table>
+    </div>
+</body>
+</html>

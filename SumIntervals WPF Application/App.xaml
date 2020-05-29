@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:SumIntervals_WPF_Application"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>
