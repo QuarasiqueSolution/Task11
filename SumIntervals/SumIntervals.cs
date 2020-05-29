@@ -18,7 +18,7 @@ using NUnit.Framework;
 using System.Linq;
 using Interval = System.ValueTuple<int, int>;
 
-namespace Task11
+namespace Task11Library
 {
     public class SumIntervals
     {
@@ -87,6 +87,16 @@ namespace Task11
             Assert.AreEqual(13, GetSumInterval(new Interval[] { (2, 5), (-1, 2), (-40, -35), (6, 8) }));
             Assert.AreEqual(1234, GetSumInterval(new Interval[] { (-7, 8), (-2, 10), (5, 15), (2000, 3150), (-5400, -5338) }));
             Assert.AreEqual(158, GetSumInterval(new Interval[] { (-101, 24), (-35, 27), (27, 53), (-105, 20), (-36, 26) }));
+        }
+
+        public void FixEfProviderServicesProblem()
+        {
+            //The Entity Framework provider type 'System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer'
+            //for the 'System.Data.SqlClient' ADO.NET provider could not be loaded. 
+            //Make sure the provider assembly is available to the running application. 
+            //See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
+
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     }
 }

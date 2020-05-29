@@ -1,4 +1,4 @@
-﻿namespace Task11
+﻿namespace Task11Library
 {
     public class SumInterval
     {

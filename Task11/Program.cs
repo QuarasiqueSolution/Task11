@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Task11Library;
 
 namespace Task11
 {
@@ -10,13 +11,9 @@ namespace Task11
             try
             {
                 Console.WriteLine("Connecting to database...");
-                using (var db = new SumIntervalsContext())
-                {
-                    var sumIntervals = db.Results;
-
-                    var lastResults = db.Results.OrderByDescending(x => x.Id).Take(5);
-                    int resultCount = lastResults.Count() >= 5 ? 5 : lastResults.Count();
-                    Console.WriteLine("Last {0} result(s) (#\'Id\': \'value\'): ", resultCount);
+                
+                    var lastResults = GetLastResults.GetRows();
+                    Console.WriteLine("Last {0} result(s) (#\'Id\': \'value\'): ", lastResults.Count());
                     foreach (var row in lastResults)
                     {
                         Console.WriteLine("#{0}: {1}", row.Id, row.Result);
@@ -54,11 +51,9 @@ namespace Task11
                         }
                         int result = SumIntervals.GetSumInterval(intervals);
                         Console.WriteLine("Sum of these intervals: " + result);
-                        db.Results.Add(new SumInterval { Result = result });
-                        db.SaveChanges();
+                        SaveResult.Save(new SumInterval { Result = result });
                         Console.WriteLine("Result was inserted into database.");
                     }
-                }
             }
             catch (Exception e)
             {

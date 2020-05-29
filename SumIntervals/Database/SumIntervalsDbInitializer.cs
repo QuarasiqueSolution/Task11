@@ -1,7 +1,6 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
-namespace Task11
+namespace Task11Library
 {
     public class SumIntervalDbInitializer: CreateDatabaseIfNotExists<SumIntervalsContext>
     {

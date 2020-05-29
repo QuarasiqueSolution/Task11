@@ -1,0 +1,112 @@
+﻿<Window x:Class="SumIntervals_WPF_Application.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SumIntervals_WPF_Application"
+        mc:Ignorable="d"
+        Title="Sum of intervals" 
+        SizeToContent="WidthAndHeight" 
+        ResizeMode="NoResize">
+
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" 
+                   Text="Input number of intervals to get sum of the lengths of these intervals: "
+                   Margin="5,5,5,0"/>
+        <TextBlock HorizontalAlignment="Center" 
+                   Text="(Note: Incorrect input would be a &quot;0&quot;)" 
+                   Margin="0,0,0,5"/>
+        
+        <DockPanel Height="300">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <ItemsControl Name="IntervalItemsControl" 
+                              Grid.Column="0"
+                              Grid.Row="0">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <TextBox Text="{Binding Path=FirstInterval, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Row="0" 
+                                     Grid.Column="0"
+                                     HorizontalContentAlignment="Center"
+                                     Margin="10,5,0,0"
+                                     PreviewTextInput="TextboxPreviewInput"/>
+                                <Button Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="45,5,45,0"
+                                    Click="DeleteButtonClick">
+                                    X
+                                </Button>
+                                <TextBox Text="{Binding Path=SecondInterval, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Row="0"
+                                     Grid.Column="2"
+                                     HorizontalContentAlignment="Center"
+                                     Margin="0,5,10,0"
+                                     PreviewTextInput="TextboxPreviewInput"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <Grid Margin="5,15,5,10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="AddIntervalButton" 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Margin="0,0,5,0"
+                    Click="AddIntervalButtonClick">
+                Add new interval
+            </Button>
+            <Separator Grid.Row="1" 
+                       Grid.ColumnSpan="2"
+                       Margin="0,5,0,5"/>
+            <Button x:Name="ClearIntervalButton" 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Margin="5,0,0,0"
+                    Click="ClearIntervalsButtonClick">
+                Clear intervals
+            </Button>
+            <TextBlock Text="Result: " 
+                       Grid.Row="2" 
+                       Grid.Column="0" 
+                       Margin="0,0,0,5" 
+                       HorizontalAlignment="Left"/>
+            <TextBox Text="{Binding Path=Result, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Row="2" 
+                     Grid.Column="1" 
+                     Margin="5,0,0,0"
+                     HorizontalContentAlignment="Right"
+                     IsReadOnly="True"/>
+        </Grid>
+
+        <Button x:Name="GetSumIntervalsButton"
+                Command="{Binding GetSumIntervalsCommand}"
+                CommandParameter="{x:Reference Name=IntervalItemsControl}"
+                Margin="5,0,5,10"
+                IsEnabled="{Binding IsEnabledGetSumButton, UpdateSourceTrigger=PropertyChanged}">
+            Calculate sum of intervals
+        </Button>
+    </StackPanel>
+</Window>
